@@ -1,14 +1,16 @@
 {
-  "name": "zvinca-bot",
-  "version": "1.0.3",
+  "name": "@alinzvinca/zvinca-bot",
+  "version": "2.0.2",
   "description": "A very lightweight and simple artificial intelligence chatbot package with multiple language support!",
   "main": "index.js",
   "scripts": {
     "test": "echo \" no test specified\""
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Lebyy/SmartestChatBot.git"
+    "url": "git://github.com/alinzvinca/ZvincaBot.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "keywords": [
     "API",
