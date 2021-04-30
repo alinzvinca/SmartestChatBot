@@ -27,7 +27,6 @@ class Client {
 		user: 1,
 		language: "en"
 	  }) {
-	  	 	throw new err('ERROR');
 		if (!ops.message) throw new err("No message was provided");
 		if (typeof ops.message !== "string") throw new err("Message must be a string!");
 		if (typeof ops.name !== "string" || ops.name < 3) throw new err("Bot name must be a string with 3 or more characters!");
