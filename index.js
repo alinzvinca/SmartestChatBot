@@ -33,15 +33,16 @@ class Client {
 		if (typeof ops.owner !== "string" || ops.owner < 3) throw new err("Owner name must be a string with 3 or more characters!");
 		if (typeof ops.user !== "number") throw new err("User id must be a number!", ops.user);
 		if (typeof ops.language !== "string") throw new err("Language must be a string!");
-		let ttt = await translate(ops.message, {to:"en"});
-		ttt.catch(e => {
+		try { 
+			let ttt = await translate(ops.message, {to:"en"});
+			ops.message = ttt.text
+			const res = await fetch(`${base}/chatbot?message=${encodeURIComponent(ops.message)}&botname=${encodeURIComponent(ops.name)}&ownername=${encodeURIComponent(ops.owner)}&user=${encodeURIComponent(ops.user)}`, {});
+			const response = await res.json();
+			let translatedtext = await translate(response.message, {to: ops.language})
+    		return translatedtext.text
+		} catch(err) {
 	  	 	throw new err(e);
-		})
-		ops.message = ttt.text
-		const res = await fetch(`${base}/chatbot?message=${encodeURIComponent(ops.message)}&botname=${encodeURIComponent(ops.name)}&ownername=${encodeURIComponent(ops.owner)}&user=${encodeURIComponent(ops.user)}`, {});
-		const response = await res.json();
-		let translatedtext = await translate(response.message, {to: ops.language})
-    return translatedtext.text
+		}
 	}
 
 	/**
@@ -56,13 +57,14 @@ class Client {
 	  	if (!ops.message) throw new err("No message was provided");
 		if (typeof ops.message !== "string") throw new err("Message must be a string!");
 		if (typeof ops.language !== "string") throw new err("Language must be a string!");
-		let ttt = await translate(ops.message, {to:"en"});
-		ttt.catch(e => {
+		try {
+			let ttt = await translate(ops.message, {to:"en"});
+			ops.message = ttt.text
+			let translatedtext = await translate(await response(ops.message), {to: ops.language})
+		  	return translatedtext.text;
+	  	} catch(err) {
 	  	 	throw new err(e);
-		})
-		ops.message = ttt.text
-		let translatedtext = await translate(await response(ops.message), {to: ops.language})
-	  	return translatedtext.text
+		}
 	}
 
 }
