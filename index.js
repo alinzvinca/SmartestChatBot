@@ -34,6 +34,9 @@ class Client {
 		if (typeof ops.user !== "number") throw new err("User id must be a number!");
 		if (typeof ops.language !== "string") throw new err("Language must be a string!");
 		let ttt = await translate(ops.message, {to:"en"})
+		ttt.catch(e => {
+			console.log(e);
+		})
 		ops.message = ttt.text
 		const res = await fetch(`${base}/chatbot?message=${encodeURIComponent(ops.message)}&botname=${encodeURIComponent(ops.name)}&ownername=${encodeURIComponent(ops.owner)}&user=${encodeURIComponent(ops.user)}`, {});
 		const response = await res.json();

@@ -1,5 +1,5 @@
 {
-  "name": "smartestchatbot",
+  "name": "zvinca-bot",
   "version": "1.0.3",
   "description": "A very lightweight and simple artificial intelligence chatbot package with multiple language support!",
   "main": "index.js",
@@ -24,7 +24,7 @@
     "arc",
     "npm"
   ],
-  "author": "Lebyy_Dev",
+  "author": "Zvinca Alin",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Lebyy/SmartestChatBot/issues"
